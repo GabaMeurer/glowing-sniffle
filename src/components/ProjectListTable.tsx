@@ -27,14 +27,14 @@ const ProjectListTable: React.FC<{ projects: Project[], showActions?: boolean }>
             <td>{project.project_start_date}</td>
             <td>{project.project_end_date}</td>
             {showActions && (
-              <td>
-                <Button variant="primary" size="sm">
+              <td className="center-content">
+                <Button variant="primary" size="sm" className="button-space">
                   <BsEye />
-                </Button>{' '}
-                <Button variant="success" size="sm">
+                </Button>
+                <Button variant="success" size="sm" className="button-space">
                   <BsPencil />
-                </Button>{' '}
-                <Button variant="danger" size="sm">
+                </Button>
+                <Button variant="danger" size="sm" className="button-space">
                   <BsTrash />
                 </Button>
               </td>
