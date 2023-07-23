@@ -1,62 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import { GetServerSideProps } from 'next';
+import { Project } from '@component/pages/api/project';
+import ProjectListTable from '../components/ProjectListTable';
 
-
-interface Project {
-  id: number;
-  name: string;
-  description: string;
-  project_start_date: string;
-  project_end_date: string;
+interface ProjectListProps {
+  projects: Project[];
 }
 
-function ProjectListPage() {
-  const [projects, setProjects] = useState<Project[]>([]);
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      // Replace with your Directus API URL
-      const apiUrl = 'http://0.0.0.0:8055/items/projects';
-      try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-
-        if (data.data) {
-          setProjects(data.data);
-        } else {
-          // There was a problem. The error information will be in data.errors
-        }
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
-
-    fetchProjects();
-  }, []);
-
+const ProjectList: React.FC<ProjectListProps> = ({ projects }) => {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Start Date</th>
-          <th>End Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        {projects.map((project) => (
-          <tr key={project.id}>
-            <td>{project.id}</td>
-            <td>{project.name}</td>
-            <td>{project.description}</td>
-            <td>{project.project_start_date}</td>
-            <td>{project.project_end_date}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <div className="container">
+      <h1>Project List</h1>
+      <ProjectListTable projects={projects} />
+    </div>
   );
-}
+};
 
-export default ProjectListPage;
+export default ProjectList;
+
+export const getServerSideProps: GetServerSideProps = async () => {
+    const res = await fetch('http://0.0.0.0:8055/items/projects');
+    const data = await res.json();
+  
+    console.log(data); // Log the data to check its structure
+  
+    const projects: Project[] = data.data || []; // If data.data is undefined, default to an empty array
+  
+    return {
+      props: { projects },
+    }
+  }
+  

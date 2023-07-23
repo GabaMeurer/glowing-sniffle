@@ -1,11 +1,5 @@
 import React from 'react';
-
-interface Project {
-  name: string;
-  description: string;
-  startDate: string;
-  endDate: string;
-}
+import { Project } from '@component/pages/api/project';
 
 interface ProjectListTableProps {
   projects: Project[];
@@ -27,8 +21,8 @@ const ProjectListTable: React.FC<ProjectListTableProps> = ({ projects }) => {
           <tr key={index}>
             <td>{project.name}</td>
             <td>{project.description}</td>
-            <td>{project.startDate}</td>
-            <td>{project.endDate}</td>
+            <td>{project.project_start_date}</td>
+            <td>{project.project_end_date}</td>
           </tr>
         ))}
       </tbody>
