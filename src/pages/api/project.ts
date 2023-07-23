@@ -5,7 +5,7 @@
     user_updated: string;
     date_updated: string;
     name: string;
-    description: string | null;  // Note that this can be null
+    description: string | null;
     project_start_date: string;
     project_end_date: string;
   }

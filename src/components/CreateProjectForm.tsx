@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
-const CreateProjectForm: React.FC = () => {
+interface CreateProjectFormProps {
+  onProjectAdded: () => void;
+}
+
+const CreateProjectForm: React.FC<CreateProjectFormProps> = ({ onProjectAdded }) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false); // New state for submission feedback
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -27,21 +30,19 @@ const CreateProjectForm: React.FC = () => {
     const data = await response.json();
 
     if (data) {
-      setIsSubmitted(true); // Provide feedback to the user
       // Clear the form
       setName('');
       setDescription('');
       setStartDate('');
       setEndDate('');
-      
-      // Optionally, remove the confirmation message after a delay
-      setTimeout(() => setIsSubmitted(false), 3000);
+
+      // Call the onProjectAdded function to fetch the projects again
+      onProjectAdded();
     }
   };
 
   return (
     <Form onSubmit={handleSubmit}>
-      {isSubmitted && <p>Project successfully added!</p>} {/* Display the feedback when isSubmitted is true */}
       <Form.Group controlId="formProjectName">
         <Form.Label>Name</Form.Label>
         <Form.Control type="text" value={name} onChange={e => setName(e.target.value)} />
