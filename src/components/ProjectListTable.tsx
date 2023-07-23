@@ -1,6 +1,8 @@
 import { Project } from '@component/pages/api/project';
 import { Table, Button } from 'react-bootstrap';
 import { BsEye, BsPencil, BsTrash } from 'react-icons/bs';
+import { FiFolder } from 'react-icons/fi';
+
 
 // In your ProjectListTable component
 const ProjectListTable: React.FC<{ projects: Project[], showActions?: boolean }> = ({ projects, showActions = true }) => {
@@ -36,6 +38,9 @@ const ProjectListTable: React.FC<{ projects: Project[], showActions?: boolean }>
                 </Button>
                 <Button variant="danger" size="sm" className="button-space">
                   <BsTrash />
+                </Button>
+                <Button variant="primary" size="sm" className="mr-2">
+                  <FiFolder />
                 </Button>
               </td>
             )}
