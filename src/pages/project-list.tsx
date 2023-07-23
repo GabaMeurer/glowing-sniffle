@@ -21,7 +21,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const res = await fetch('http://0.0.0.0:8055/items/projects');
     const data = await res.json();
   
-    console.log(data); // Log the data to check its structure
+    //console.log(data); // Log the data to check its structure
   
     const projects: Project[] = data.data || []; // If data.data is undefined, default to an empty array
   
