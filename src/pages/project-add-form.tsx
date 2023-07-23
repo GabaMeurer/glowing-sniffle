@@ -22,7 +22,7 @@ const AddProject: NextPage = () => {
       <h1>Add Project</h1>
       <CreateProjectForm onProjectAdded={fetchProjects} />
       <h2>Existing Projects</h2>
-      <ProjectListTable projects={projects} />
+      <ProjectListTable projects={projects} showActions={false} />
     </div>
   );
 };
