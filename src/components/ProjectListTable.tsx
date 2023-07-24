@@ -52,7 +52,7 @@ const ProjectListTable: React.FC<{ isActionHidden?: boolean }> = ({ isActionHidd
       fetchProjects();
       fetchTotalCount();
     }, [currentPage]);  // or whatever your dependency array should be
-  console.log('totalPages:', totalPages);
+  //console.log('totalPages:', totalPages);
 
   return (
     <div>

@@ -23,10 +23,15 @@ const PaginationComponent: React.FC<PaginationProps> = ({ currentPage, totalPage
   }
 
   return (
-    <div className="d-flex justify-content-center">
-      <Pagination>{items}</Pagination>
+    <div className="d-flex justify-content-end">
+      <Pagination>
+        <Pagination.First onClick={() => handlePageChange(1)} />
+        {items}
+        <Pagination.Last onClick={() => handlePageChange(totalPages)} />
+      </Pagination>
     </div>
   );
 };
 
 export default PaginationComponent;
+
