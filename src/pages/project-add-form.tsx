@@ -1,11 +1,10 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { NextPage } from 'next';
 import CreateProjectForm from '@component/components/CreateProjectForm';
 import ProjectListTable from '@component/components/ProjectListTable';
-import { Project } from '@component/pages/api/project';
 
 const AddProject: NextPage = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState([]);
 
   const fetchProjects = useCallback(async () => {
     const response = await fetch('http://0.0.0.0:8055/items/projects');
@@ -22,7 +21,7 @@ const AddProject: NextPage = () => {
       <h1>Add Project</h1>
       <CreateProjectForm onProjectAdded={fetchProjects} />
       <h2>Existing Projects</h2>
-      <ProjectListTable projects={projects} showActions={false} />
+      <ProjectListTable isActionHidden={true} />
     </div>
   );
 };
