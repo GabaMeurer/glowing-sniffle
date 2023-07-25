@@ -34,11 +34,12 @@ const SimpleProjectListTable: React.FC<{ isActionHidden?: boolean }> = ({ isActi
           </tr>
         </thead>
         <tbody>
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <tr key={project.id}>
               <td>{project.name}</td>
               <td>{project.description}</td>
-              <td>{project.date_created}</td>
+              <td>{new Date(project.date_created).toLocaleDateString().toString()}</td>
+              <td>{new Date(project.date_created).toLocaleString(undefined, { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }).toString()}</td>
             </tr>
           ))}
         </tbody>
@@ -48,12 +49,3 @@ const SimpleProjectListTable: React.FC<{ isActionHidden?: boolean }> = ({ isActi
 };
 export default SimpleProjectListTable;
 
-// const ProjectListTable: React.FC<{ isActionHidden?: boolean, projects: Project[] }> = ({ isActionHidden, projects }) => {
-//     // other code here...
-  
-//     useEffect(() => {
-//       fetchTotalCount();
-//     }, [currentPage]);
-  
-//     // more code here...
-//   };
