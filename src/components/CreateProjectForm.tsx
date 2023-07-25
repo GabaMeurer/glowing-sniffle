@@ -9,7 +9,7 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({ onProjectAdded })
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [endDate, setETA] = useState('');
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -23,7 +23,7 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({ onProjectAdded })
         name,
         description,
         project_start_date: startDate,
-        project_end_date: endDate,
+        project_eta: endDate,
       }),
     });
 
@@ -34,7 +34,7 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({ onProjectAdded })
       setName('');
       setDescription('');
       setStartDate('');
-      setEndDate('');
+      setETA('');
 
       // Call the onProjectAdded function to fetch the projects again
       onProjectAdded();
@@ -59,8 +59,8 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({ onProjectAdded })
       </Form.Group>
 
       <Form.Group controlId="formProjectEndDate">
-        <Form.Label>End Date</Form.Label>
-        <Form.Control type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
+        <Form.Label>Project ETA</Form.Label>
+        <Form.Control type="date" value={endDate} onChange={e => setETA(e.target.value)} />
       </Form.Group>
 
       <Button variant="primary" type="submit">

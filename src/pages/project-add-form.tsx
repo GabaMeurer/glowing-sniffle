@@ -1,29 +1,28 @@
-import { useState, useEffect, useCallback } from 'react';
-import { NextPage } from 'next';
-import CreateProjectForm from '@component/components/CreateProjectForm';
-import ProjectListTable from '@component/components/ProjectListTable';
+//Add Project
 
-const AddProject: NextPage = () => {
-  const [projects, setProjects] = useState([]);
+import { useState, useCallback } from 'react';
+import { Alert } from 'react-bootstrap';
+import CreateProjectForm from '@component/components/CreateProjectForm';
+import SimpleProjectListTable from '@component/components/SimpleProjectListTable';
+
+const AddProject = () => {
+  const [showAlert, setShowAlert] = useState(false);
 
   const fetchProjects = useCallback(async () => {
     const response = await fetch('http://0.0.0.0:8055/items/projects');
     const data = await response.json();
-    setProjects(data.data);
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 3000); // hide the alert after 3 seconds
   }, []);
-
-  useEffect(() => {
-    fetchProjects();
-  }, [fetchProjects]);
 
   return (
     <div className="container">
       <h1>Add Project</h1>
+      {showAlert && <Alert variant="success">Project added successfully!</Alert>}
       <CreateProjectForm onProjectAdded={fetchProjects} />
-      <h2>Existing Projects</h2>
-      <ProjectListTable isActionHidden={true} />
+      <h2>Last 5 added projects</h2>
+      <SimpleProjectListTable isActionHidden={true} />
     </div>
   );
 };
-
 export default AddProject;
