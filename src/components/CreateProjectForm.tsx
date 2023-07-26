@@ -43,25 +43,25 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({ onProjectAdded })
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="formProjectName">
-        <Form.Label>Name</Form.Label>
-        <Form.Control type="text" value={name} onChange={e => setName(e.target.value)} />
-      </Form.Group>
+        <Form.Group controlId="formProjectName">
+          <Form.Label>Name</Form.Label>
+          <Form.Control type="text" value={name} onChange={e => setName(e.target.value)} />
+        </Form.Group>
 
-      <Form.Group controlId="formProjectDescription">
-        <Form.Label>Description</Form.Label>
-        <Form.Control type="text" value={description} onChange={e => setDescription(e.target.value)} />
-      </Form.Group>
+        <Form.Group controlId="formProjectDescription">
+          <Form.Label>Description</Form.Label>
+          <Form.Control type="text" value={description} onChange={e => setDescription(e.target.value)} />
+        </Form.Group>
 
-      <Form.Group controlId="formProjectStartDate">
-        <Form.Label>Start Date</Form.Label>
-        <Form.Control type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
-      </Form.Group>
+        <Form.Group controlId="formProjectStartDate">
+          <Form.Label>Start Date</Form.Label>
+          <Form.Control type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
+        </Form.Group>
 
-      <Form.Group controlId="formProjectEndDate">
-        <Form.Label>Project ETA</Form.Label>
-        <Form.Control type="date" value={endDate} onChange={e => setETA(e.target.value)} />
-      </Form.Group>
+        <Form.Group controlId="formProjectEndDate">
+          <Form.Label>Project ETA</Form.Label>
+          <Form.Control type="date" value={endDate} onChange={e => setETA(e.target.value)} />
+        </Form.Group>
 
       <Button variant="primary" type="submit">
         Add Project
