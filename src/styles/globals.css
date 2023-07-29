@@ -115,3 +115,27 @@ a {
 .button-space {
   margin-right: 5px; /* Adjust as needed */
 }
+.table-space {
+  margin-top: 20px;
+}
+
+.custom-navbar {
+  background-color: #999999 !important;
+}
+
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link,
+.custom-navbar .btn-outline-light {
+  color: #ffffff !important;
+}
+
+.custom-header-buttons {
+  background-color: #999999 !important;
+}
+
+.custom-header-buttons.navbar-brand,
+.custom-header-buttons.nav-link,
+.custom-header-buttons .btn-outline-light {
+  color: #111111 !important;
+}
+

@@ -11,24 +11,6 @@ const ProjectListTable: React.FC<{ isActionHidden?: boolean }> = ({ isActionHidd
   const [totalPages, setTotalPages] = useState(0);
   const projectsPerPage = 10;
   const showActions = !isActionHidden;
-  //console.log(typeof(projectsPerPage));
-  //useEffect(() => {
-    // const fetchProjects = async () => {
-    //   const res = await fetch(`http://0.0.0.0:8055/items/projects?limit=${projectsPerPage}&page=${currentPage}`);
-    //   //http://0.0.0.0:8055/items/projects/?meta=total_count
-
-    //   //const res = await fetch(`http://0.0.0.0:8055/items/projects?limit=10&page=2`);
-
-    //   const data = await res.json();
-    //   console.log(data)
-    //   setProjects(data.data);
-      
-    //   if (data && data.meta) {
-    //     setTotalPages(Math.ceil(data.meta.total_count / projectsPerPage));
-    //   } else {
-    //     console.log('data or data.meta is undefined');
-    //   }
-    // };
 
     const fetchProjects = async () => {
       const res = await fetch(`http://0.0.0.0:8055/items/projects?limit=${projectsPerPage}&page=${currentPage}`);
@@ -51,19 +33,18 @@ const ProjectListTable: React.FC<{ isActionHidden?: boolean }> = ({ isActionHidd
     useEffect(() => {
       fetchProjects();
       fetchTotalCount();
-    }, [currentPage]);  // or whatever your dependency array should be
-  //console.log('totalPages:', totalPages);
-
+    }, [currentPage]);
+    
   return (
     <div>
       <Table striped bordered hover>
         <thead>
           <tr>
             <th>#</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Start Date</th>
-            <th>End Date</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Data Inicial</th>
+            <th>Data Final</th>
             {showActions && <th>Actions</th>}
           </tr>
         </thead>

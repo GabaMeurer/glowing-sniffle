@@ -17,10 +17,10 @@ const AddProject = () => {
 
   return (
     <div className="container">
-      <h1>Add Project</h1>
+      <h1 className="table-space"> Project</h1>
       {showAlert && <Alert variant="success">Project added successfully!</Alert>}
       <CreateProjectForm onProjectAdded={fetchProjects} />
-      <h2>Last 5 added projects</h2>
+      <h2 className="table-space">Last 5 added projects</h2>
       <SimpleProjectListTable isActionHidden={true} />
     </div>
   );

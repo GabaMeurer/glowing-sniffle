@@ -1,4 +1,3 @@
-import { GetServerSideProps } from 'next';
 import ProjectListTable from '../components/ProjectListTable';
 
 const ProjectList: React.FC = () => {
