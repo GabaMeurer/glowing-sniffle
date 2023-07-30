@@ -1,4 +1,4 @@
-import '@component/styles/globals.css'
+import '@component/styles/global.css'
 import type { AppProps } from 'next/app'
 import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';

@@ -48,4 +48,3 @@ const SimpleProjectListTable: React.FC<{ isActionHidden?: boolean }> = ({ isActi
   );
 };
 export default SimpleProjectListTable;
-

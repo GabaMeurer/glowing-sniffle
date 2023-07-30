@@ -33,4 +33,3 @@ const Header: React.FC<HeaderProps> = ({ handleNavigation }) => {
 export default Header;
 
 
-
