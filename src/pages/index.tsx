@@ -4,6 +4,7 @@ import { Container, Row, Col, InputGroup, FormControl, Button } from 'react-boot
 import ProjectCard from '@component/components/ProjectCard';
 import Link from 'next/link';
 
+
 // Define an interface for the project data
 interface Project {
   id: number;
@@ -44,7 +45,8 @@ const Home: React.FC = () => {
         </Col>
         <Col xs={12} md={6} lg={3}>
           <ProjectCard
-            title="Projects"
+            title="Projetos"
+            showIcon={true} // Inclui icon
             content={projects.map((project) => (
               <div key={project.id}>
                 <Link href={`/project-detail/${project.id}`}>{project.name}</Link>
