@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, InputGroup, FormControl, Button } from 'react-bootstrap';
 import ProjectCard from '@component/components/ProjectCard';
+import Link from 'next/link';
 
+// Define an interface for the project data
 interface Project {
   id: number;
   name: string;
@@ -41,7 +43,14 @@ const Home: React.FC = () => {
           <ProjectCard title="Agenda" content="" />
         </Col>
         <Col xs={12} md={6} lg={3}>
-          <ProjectCard title="Projetos" content="" />
+          <ProjectCard
+            title="Projects"
+            content={projects.map((project) => (
+              <div key={project.id}>
+                <Link href={`/project-detail/${project.id}`}>{project.name}</Link>
+              </div>
+            ))}
+          />
         </Col>
         <Col xs={12} md={6} lg={3}>
           <ProjectCard title="Atalhos" content="" />
@@ -55,3 +64,4 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+

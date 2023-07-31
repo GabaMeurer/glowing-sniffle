@@ -1,9 +1,11 @@
+// ProjectCard.tsx
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 
+
 interface MyCardProps {
   title: string;
-  content: string | JSX.Element;
+  content: string | JSX.Element[]; // Allow an array of JSX elements
 }
 
 const ProjectCard: React.FC<MyCardProps> = ({ title, content }) => (
