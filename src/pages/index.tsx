@@ -29,7 +29,7 @@ const Home: React.FC = () => {
   }, []);
   
   const searchBoxStyle = {
-    marginTop: '10rem', // posicao margin-top para searchbox
+    marginTop: '8rem', // posicao margin-top para searchbox
   };
 
   return (
