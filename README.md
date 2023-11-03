@@ -1,4 +1,4 @@
-# NProjeto TCC
+# Projeto TCC
 
 ## Descrição
 
@@ -57,4 +57,3 @@ Clone o repositório:
 ```bash
 $ git clone https://github.com/seu-usuario/nome-do-seu-projeto.git
 $ cd nome-do-seu-projeto
-
