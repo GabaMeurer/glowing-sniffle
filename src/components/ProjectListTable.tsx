@@ -1,9 +1,11 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { Project } from '@component/pages/api/project';
 import { Table, Button, Dropdown } from 'react-bootstrap';
 import { BsEye, BsPencil, BsTrash } from 'react-icons/bs';
 import { FiFolder } from 'react-icons/fi';
 import PaginationComponent from './Pagination';
+import ProjectCardView from './ProjectCardView';
 
 const ProjectListTable: React.FC<{ isActionHidden?: boolean }> = ({ isActionHidden }) => {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -81,10 +83,10 @@ const ProjectListTable: React.FC<{ isActionHidden?: boolean }> = ({ isActionHidd
   // Placeholder function for rendering cards view
   const renderProjectCards = () => {
     return (
-      <div>
-        {/* Map through your projects array and create card components */}
-        {/* This is where you would create your card layout */}
-        <p>Card layout not implemented</p>
+      <div className="card-container">
+        {projects.map((project) => (
+          <ProjectCardView key={project.id} project={project} />
+        ))}
       </div>
     );
   };

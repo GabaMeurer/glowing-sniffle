@@ -147,6 +147,13 @@ a {
   bottom: 0;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat; /* This ensures the background does not repeat */
-  z-index: -1; /* This places the background below the other content */
+  background-repeat: no-repeat; 
+  z-index: -1; 
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
