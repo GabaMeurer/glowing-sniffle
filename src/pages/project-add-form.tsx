@@ -24,8 +24,8 @@ const AddProject = () => {
 
   return (
     <div className="container">
-      <h1 className="table-space"> Project</h1>
-      {showAlert && <Alert variant="success">Project added successfully!</Alert>}
+      <h1 className="table-space"> Adicionar Projeto</h1>
+      {showAlert && <Alert variant="success">Project adicionado com sucesso!</Alert>}
       
       <CreateProjectForm 
         onProjectAdded={handleProjectAdded} 
@@ -33,7 +33,7 @@ const AddProject = () => {
         onValidationError={handleValidationError}  // Pass the validation error handler
       />
       
-      <h2 className="table-space">Last 5 added projects</h2>
+      <h2 className="table-space">Projetos Adicionados recentemente</h2>
       <SimpleProjectListTable isActionHidden={true} reload={reload} />
     </div>
   );

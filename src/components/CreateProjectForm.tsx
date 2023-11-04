@@ -83,7 +83,7 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({
 
         {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}  {/* Display error message */}
 
-        <Button variant="primary" type="submit" disabled={!isFormValid()}>
+        <Button variant="primary" type="submit" className="mt-3 mb-3" disabled={!isFormValid()}>
           Adicionar Projeto
         </Button>
     </Form>
