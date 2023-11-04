@@ -3,22 +3,21 @@ import { Project } from '@component/pages/api/project';
 import { Table } from 'react-bootstrap';
 
 
-const SimpleProjectListTable: React.FC<{ isActionHidden?: boolean }> = ({ isActionHidden }) => {
+const SimpleProjectListTable: React.FC<{ isActionHidden?: boolean, reload: number }> = ({ isActionHidden, reload }) => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [currentPage] = useState(1);
   const showActions = !isActionHidden;
 
-    const fetchProjects = async () => {
-        const res = await fetch(`http://0.0.0.0:8055/items/projects?sort=-date_created&limit=5`);
-      const data = await res.json();
-      
-      setProjects(data.data);
-    };
-    
-    useEffect(() => {
-      fetchProjects();
-      
-    }, [currentPage]);  
+  const fetchProjects = async () => {
+    const res = await fetch(`http://0.0.0.0:8055/items/projects?sort=-date_created&limit=5`);
+    const data = await res.json();
+    setProjects(data.data);
+  };
+
+  useEffect(() => {
+    fetchProjects();
+  }, [currentPage, reload]);  // Reload the data whenever 'reload' changes
+
 
 
   return (

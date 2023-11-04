@@ -7,21 +7,24 @@ import SimpleProjectListTable from '@component/components/SimpleProjectListTable
 
 const AddProject = () => {
   const [showAlert, setShowAlert] = useState(false);
+  const [reload, setReload] = useState(0);  // new state for reloading projects
 
-  const fetchProjects = useCallback(async () => {
-    const response = await fetch('http://0.0.0.0:8055/items/projects');
-    const data = await response.json();
+  const handleProjectAdded = useCallback(async () => {
+    // Here, instead of fetching all projects, we simply update the reload state.
+    // The actual fetching of projects will be done in the SimpleProjectListTable component.
+    setReload(reload + 1);
+
     setShowAlert(true);
-    setTimeout(() => setShowAlert(false), 3000); // hide the alert after 3 seconds
-  }, []);
+    setTimeout(() => setShowAlert(false), 3000);  // hide the alert after 3 seconds
+  }, [reload]);
 
   return (
     <div className="container">
       <h1 className="table-space"> Project</h1>
       {showAlert && <Alert variant="success">Project added successfully!</Alert>}
-      <CreateProjectForm onProjectAdded={fetchProjects} />
+      <CreateProjectForm onProjectAdded={handleProjectAdded} />
       <h2 className="table-space">Last 5 added projects</h2>
-      <SimpleProjectListTable isActionHidden={true} />
+      <SimpleProjectListTable isActionHidden={true} reload={reload} />
     </div>
   );
 };
