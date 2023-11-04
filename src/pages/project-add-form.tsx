@@ -7,21 +7,34 @@ import SimpleProjectListTable from '@component/components/SimpleProjectListTable
 
 const AddProject = () => {
   const [showAlert, setShowAlert] = useState(false);
-
-  const fetchProjects = useCallback(async () => {
-    const response = await fetch('http://0.0.0.0:8055/items/projects');
-    const data = await response.json();
+  const [reload, setReload] = useState(0);
+  const [formError, setFormError] = useState<string | null>(null); // Add this line
+  
+  const handleProjectAdded = useCallback(async () => {
+    setReload(reload + 1);
     setShowAlert(true);
-    setTimeout(() => setShowAlert(false), 3000); // hide the alert after 3 seconds
-  }, []);
+    setFormError(null);  // Clear the form error
+    setTimeout(() => setShowAlert(false), 3000);
+  }, [reload]);
+
+  const handleValidationError = () => { 
+    console.log("Validation error occurred!"); // Add this
+    setFormError('Please fill in the mandatory fields.');
+}
 
   return (
     <div className="container">
       <h1 className="table-space"> Project</h1>
       {showAlert && <Alert variant="success">Project added successfully!</Alert>}
-      <CreateProjectForm onProjectAdded={fetchProjects} />
+      
+      <CreateProjectForm 
+        onProjectAdded={handleProjectAdded} 
+        errorMessage={formError} // Pass the error message to the form component
+        onValidationError={handleValidationError}  // Pass the validation error handler
+      />
+      
       <h2 className="table-space">Last 5 added projects</h2>
-      <SimpleProjectListTable isActionHidden={true} />
+      <SimpleProjectListTable isActionHidden={true} reload={reload} />
     </div>
   );
 };
