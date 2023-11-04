@@ -1,43 +1,61 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 
 interface CreateProjectFormProps {
   onProjectAdded: () => void;
+  errorMessage?: string | null;
+  onValidationError: () => void;
 }
 
-const CreateProjectForm: React.FC<CreateProjectFormProps> = ({ onProjectAdded }) => {
+const CreateProjectForm: React.FC<CreateProjectFormProps> = ({ 
+  onProjectAdded, 
+  errorMessage, 
+  onValidationError 
+}) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setETA] = useState('');
 
+  const isFormValid = () => {
+    return name.trim().length > 0 && startDate.trim().length > 0 && endDate.trim().length > 0;
+};
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+  
+    if (!isFormValid()) {
+      onValidationError();
+      return;
+  }
+
+    const payload = {
+      name: name.trim(),
+      description: description.trim(),
+      project_start_date: startDate.trim() || null,
+      project_eta: endDate.trim() || null
+    };
 
     const response = await fetch('http://0.0.0.0:8055/items/projects', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        name,
-        description,
-        project_start_date: startDate,
-        project_eta: endDate,
-      }),
+      body: JSON.stringify(payload),
     });
 
     const data = await response.json();
 
-    if (data) {
+    if (response.ok) {
       // Clear the form
       setName('');
       setDescription('');
       setStartDate('');
       setETA('');
-
-      // Call the onProjectAdded function to fetch the projects again
       onProjectAdded();
+    } else {
+      console.error(data.message);
+      onValidationError();  // Trigger the error handler for validation errors.
     }
   };
 
@@ -63,11 +81,14 @@ const CreateProjectForm: React.FC<CreateProjectFormProps> = ({ onProjectAdded })
           <Form.Control type="date" value={endDate} onChange={e => setETA(e.target.value)} />
         </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Add Project
-      </Button>
+        {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}  {/* Display error message */}
+
+        <Button variant="primary" type="submit" disabled={!isFormValid()}>
+          Adicionar Projeto
+        </Button>
     </Form>
   );
 };
 
 export default CreateProjectForm;
+

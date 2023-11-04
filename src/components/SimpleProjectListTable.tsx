@@ -25,9 +25,9 @@ const SimpleProjectListTable: React.FC<{ isActionHidden?: boolean, reload: numbe
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Added Date</th>
+            <th>Nome</th>
+            <th>Descricao</th>
+            <th>Adicionado</th>
            
             {showActions && <th>Actions</th>}
           </tr>
