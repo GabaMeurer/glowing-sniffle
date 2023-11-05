@@ -180,3 +180,19 @@ a {
   justify-content: space-between;
   align-items: center;
 }
+
+.table-fixed-layout {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.action-column {
+  width: 120px; /* adjust as necessary */
+}
+
+.long-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 150px; /* adjust as necessary */
+}

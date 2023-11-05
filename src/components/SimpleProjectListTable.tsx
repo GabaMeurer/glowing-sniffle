@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Project } from '@component/pages/api/project';
 import { Table } from 'react-bootstrap';
-import { formatDate } from '@component/utils/formatDate';
 import { formatDateOrTimeAgo } from '@component/utils/formatDateOrTimeAgo';
 
 const SimpleProjectListTable: React.FC<{ isActionHidden?: boolean, reload: number }> = ({ isActionHidden, reload }) => {

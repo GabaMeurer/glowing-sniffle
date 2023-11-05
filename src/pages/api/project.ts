@@ -8,5 +8,6 @@
     description: string | null;
     project_start_date: string;
     project_end_date: string;
+    project_status: string;
   }
   
