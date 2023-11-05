@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Project } from '@component/pages/api/project';
 import { Table } from 'react-bootstrap';
-
+import { formatDate } from '@component/utils/formatDate';
+import { formatDateOrTimeAgo } from '@component/utils/formatDateOrTimeAgo';
 
 const SimpleProjectListTable: React.FC<{ isActionHidden?: boolean, reload: number }> = ({ isActionHidden, reload }) => {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -18,8 +19,6 @@ const SimpleProjectListTable: React.FC<{ isActionHidden?: boolean, reload: numbe
     fetchProjects();
   }, [currentPage, reload]);  // Reload the data whenever 'reload' changes
 
-
-
   return (
     <div>
       <Table striped bordered hover>
@@ -28,7 +27,6 @@ const SimpleProjectListTable: React.FC<{ isActionHidden?: boolean, reload: numbe
             <th>Nome</th>
             <th>Descricao</th>
             <th>Adicionado</th>
-           
             {showActions && <th>Actions</th>}
           </tr>
         </thead>
@@ -37,8 +35,8 @@ const SimpleProjectListTable: React.FC<{ isActionHidden?: boolean, reload: numbe
             <tr key={project.id}>
               <td>{project.name}</td>
               <td>{project.description}</td>
-             
-              <td>{new Date(project.date_created).toLocaleString(undefined, { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }).toString()}</td>
+              <td>{formatDateOrTimeAgo(project.date_created)}</td>
+              {showActions && <td>{/* Actions here */}</td>}
             </tr>
           ))}
         </tbody>
@@ -46,5 +44,7 @@ const SimpleProjectListTable: React.FC<{ isActionHidden?: boolean, reload: numbe
     </div>
   );
 };
+
 export default SimpleProjectListTable;
+
 
