@@ -3,11 +3,13 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { BsEye, BsPencil, BsTrash } from 'react-icons/bs';
 import { FiFolder } from 'react-icons/fi';
+import { formatDate } from '@component/utils/formatDate';
 
 type ProjectProps = {
   id: number;
   name: string;
   description?: string | null;
+  date_created?: string;
   date_updated?: string;
   project_header_image?: string;
 };
@@ -37,10 +39,6 @@ const ProjectCardView: React.FC<{ project: ProjectProps }> = ({ project }) => {
     return randomImages.length > 0
       ? randomImages[Math.floor(Math.random() * randomImages.length)]
       : '/path-to-your-default-placeholder-image.jpg'; // Preciso arrumar uma imagem default
-  };
-
-  const formatDate = (date: string | undefined) => {
-    return date ? new Date(date).toLocaleDateString() : 'Unknown';
   };
 
   const imageUrl = project.project_header_image
@@ -93,8 +91,13 @@ const ProjectCardView: React.FC<{ project: ProjectProps }> = ({ project }) => {
         </Button>
       </Card.Body>
       <Card.Footer style={cardFooterStyle}>
-        <small className="text-muted">Last updated {formatDate(project.date_updated)}</small>
-      </Card.Footer>
+  <small className="text-muted">
+    {project.date_updated
+      ? `Last updated: ${formatDate(project.date_updated, true)}`
+      : `Created on: ${formatDate(project.date_created, true)}`}
+  </small>
+</Card.Footer>
+
     </Card>
   );
 };
