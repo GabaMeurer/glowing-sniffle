@@ -80,11 +80,11 @@ const ProjectCardView: React.FC<{ project: ProjectProps }> = ({ project }) => {
         <Card.Text style={cardTextStyle}>
           {project.description || 'No description provided.'}
         </Card.Text>
-        <Button variant="primary" size="sm">
+        <Button variant="secondary" size="sm">
           <BsEye />
         </Button>
         {' '}
-        <Button variant="success" size="sm">
+        <Button variant="secondary" size="sm">
           <BsPencil />
         </Button>
         {' '}
@@ -92,7 +92,7 @@ const ProjectCardView: React.FC<{ project: ProjectProps }> = ({ project }) => {
           <BsTrash />
         </Button>
         {' '}
-        <Button variant="info" size="sm">
+        <Button variant="secondary" size="sm">
           <FiFolder />
         </Button>
       </Card.Body>
