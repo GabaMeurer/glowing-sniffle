@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 interface Project {
   id: number;
   name: string;
-  // Add other properties as needed
+ 
 }
 
 const ProjectDetail: React.FC = () => {

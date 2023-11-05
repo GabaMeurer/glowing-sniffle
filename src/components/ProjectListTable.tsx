@@ -7,6 +7,7 @@ import { FiFolder } from 'react-icons/fi';
 import PaginationComponent from './Pagination';
 import ProjectCardView from './ProjectCardView';
 import { formatDate } from '@component/utils/formatDate';
+import Link from 'next/link';
 
 const ProjectListTable: React.FC<{ isActionHidden?: boolean }> = ({ isActionHidden }) => {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -57,7 +58,9 @@ const ProjectListTable: React.FC<{ isActionHidden?: boolean }> = ({ isActionHidd
           <tr key={project.id}>
             
             <td>{index + 1}</td>
-            <td>{project.name}</td>
+            <td>
+            <Link href={`/project-detail/${project.id}`}>{project.name}</Link>
+            </td>
             <td className="long-text">{project.description}</td>
             <td>{formatDate(project.project_start_date)}</td>
             <td>{project.project_status}</td>

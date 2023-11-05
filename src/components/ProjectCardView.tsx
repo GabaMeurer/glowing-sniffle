@@ -66,12 +66,18 @@ const ProjectCardView: React.FC<{ project: ProjectProps }> = ({ project }) => {
     alignItems: 'center',
   };
 
+  const cardTextStyle: React.CSSProperties = {
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  };
+
   return (
     <Card style={cardStyle}>
       <Card.Img variant="top" src={imageUrl} style={imageStyle} />
       <Card.Body style={cardBodyStyle}>
         <Card.Title>{project.name}</Card.Title>
-        <Card.Text>
+        <Card.Text style={cardTextStyle}>
           {project.description || 'No description provided.'}
         </Card.Text>
         <Button variant="primary" size="sm">
