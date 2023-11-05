@@ -147,6 +147,52 @@ a {
   bottom: 0;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat; /* This ensures the background does not repeat */
-  z-index: -1; /* This places the background below the other content */
+  background-repeat: no-repeat; 
+  z-index: -1; 
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* ProjectCardView.module.css or ProjectCardView.css */
+.projectCard {
+  width: 364px;
+  height: 413px;
+  margin-bottom: 1rem;
+}
+
+.projectCardImage {
+  height: 122px;
+  object-fit: cover;
+}
+
+.projectCardBody {
+  overflow-y: auto;
+}
+
+/* Additional styling for the footer can also be included if needed */
+.projectCardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-fixed-layout {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.action-column {
+  width: 120px; /* adjust as necessary */
+}
+
+.long-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 150px; /* adjust as necessary */
 }

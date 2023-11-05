@@ -1,9 +1,12 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { Project } from '@component/pages/api/project';
 import { Table, Button, Dropdown } from 'react-bootstrap';
 import { BsEye, BsPencil, BsTrash } from 'react-icons/bs';
 import { FiFolder } from 'react-icons/fi';
 import PaginationComponent from './Pagination';
+import ProjectCardView from './ProjectCardView';
+import { formatDate } from '@component/utils/formatDate';
 
 const ProjectListTable: React.FC<{ isActionHidden?: boolean }> = ({ isActionHidden }) => {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -37,37 +40,39 @@ const ProjectListTable: React.FC<{ isActionHidden?: boolean }> = ({ isActionHidd
   }, [currentPage]);
 
   const renderProjectList = () => (
-    <Table striped bordered hover>
+    <Table className="fixed-layout-table" striped bordered hover>
       <thead>
         <tr>
-          <th>#</th>
-          <th>Nome</th>
-          <th>Descrição</th>
-          <th>Data de Criação</th>
-          <th>Status do Projeto</th>
-          {showActions && <th>Ações</th>}
+          <th className="number-column">#</th>
+          <th className="name-column">Nome</th>
+          <th className="description-column">Descrição</th>
+          <th className="date-column">Inicio do Projeto</th>
+          <th className="status-column">Status do Projeto</th>
+          {showActions && <th className="actions-column">Ações</th>}
         </tr>
       </thead>
       <tbody>
+
         {projects.map((project, index) => (
           <tr key={project.id}>
+            
             <td>{index + 1}</td>
             <td>{project.name}</td>
-            <td>{project.description}</td>
-            <td>{project.project_start_date}</td>
-            <td>{project.project_end_date}</td>
+            <td className="long-text">{project.description}</td>
+            <td>{formatDate(project.project_start_date)}</td>
+            <td>{project.project_status}</td>
             {showActions && (
               <td className="center-content">
-                <Button variant="primary" size="sm" className="button-space">
+                <Button variant="secondary" size="sm" className="button-space">
                   <BsEye />
                 </Button>
-                <Button variant="success" size="sm" className="button-space">
+                <Button variant="secondary" size="sm" className="button-space">
                   <BsPencil />
                 </Button>
                 <Button variant="danger" size="sm" className="button-space">
                   <BsTrash />
                 </Button>
-                <Button variant="primary" size="sm" className="mr-2">
+                <Button variant="secondary" size="sm" className="mr-2">
                   <FiFolder />
                 </Button>
               </td>
@@ -81,10 +86,10 @@ const ProjectListTable: React.FC<{ isActionHidden?: boolean }> = ({ isActionHidd
   // Placeholder function for rendering cards view
   const renderProjectCards = () => {
     return (
-      <div>
-        {/* Map through your projects array and create card components */}
-        {/* This is where you would create your card layout */}
-        <p>Card layout not implemented</p>
+      <div className="card-container">
+        {projects.map((project) => (
+          <ProjectCardView key={project.id} project={project} />
+        ))}
       </div>
     );
   };

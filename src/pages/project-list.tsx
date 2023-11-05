@@ -1,3 +1,4 @@
+import React from 'react';
 import ProjectListTable from '../components/ProjectListTable';
 
 const ProjectList: React.FC = () => {
