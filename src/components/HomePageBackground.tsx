@@ -1,4 +1,3 @@
-import React, { CSSProperties } from 'react';
 
 interface HomePageBackgroundProps {
   imageUrl: string;

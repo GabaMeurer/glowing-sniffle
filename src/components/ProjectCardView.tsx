@@ -1,50 +1,102 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import { BsThreeDots, BsPencil, BsTrash } from 'react-icons/bs';
+import { BsEye, BsPencil, BsTrash } from 'react-icons/bs';
+import { FiFolder } from 'react-icons/fi';
 
 type ProjectProps = {
-    id: number;
-    name: string;
-    description?: string | null; // Allow string, undefined, or null
-    date_updated?: string; // Optional property
-    image?: string; // Optional property
+  id: number;
+  name: string;
+  description?: string | null;
+  date_updated?: string;
+  project_header_image?: string;
+};
+
+const IMAGE_BASE_URL = 'http://0.0.0.0:8055/assets/';
+
+const ProjectCardView: React.FC<{ project: ProjectProps }> = ({ project }) => {
+  const [randomImages, setRandomImages] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await fetch('http://0.0.0.0:8055/files?filter[folder]=e2e7ba70-f4f9-4749-85d2-668819a39843');
+        const data = await response.json();
+        
+        const imageUrls = data.data.map((file: any) => IMAGE_BASE_URL + file.id);
+        setRandomImages(imageUrls);
+      } catch (error) {
+        console.error('Error fetching images:', error);
+      }
+    };
+
+    fetchImages();
+  }, []);
+
+  const getRandomImage = () => {
+    return randomImages.length > 0
+      ? randomImages[Math.floor(Math.random() * randomImages.length)]
+      : '/path-to-your-default-placeholder-image.jpg'; // Preciso arrumar uma imagem default
   };
 
-  const ProjectCardView: React.FC<{ project: ProjectProps }> = ({ project }) => {
-    // Formatting the date here for last updated, adjust as needed
-    const formatDate = (date: string | undefined) => {
-      return date ? new Date(date).toLocaleDateString() : 'Unknown';
-    };
-  // Use placeholder image or actual image path from project data
-  const imageUrl = project.image || '/path-to-your-placeholder-image.jpg';
+  const formatDate = (date: string | undefined) => {
+    return date ? new Date(date).toLocaleDateString() : 'Unknown';
+  };
+
+  const imageUrl = project.project_header_image
+    ? `${IMAGE_BASE_URL}${project.project_header_image}`
+    : getRandomImage();
+
+  // Inline styles
+  const cardStyle = {
+    width: '18rem',
+    marginBottom: '1rem'
+  };
+
+  const imageStyle = {
+    height: '120px',
+    objectFit: 'cover' as 'cover',
+  };
+
+  const cardBodyStyle = {
+    overflowY: 'auto' as 'auto',
+  };
+
+  const cardFooterStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  };
 
   return (
-    <Card style={{ width: '18rem' }} className="mb-4">
-      <Card.Img variant="top" src={imageUrl} />
-      <Card.Body>
+    <Card style={cardStyle}>
+      <Card.Img variant="top" src={imageUrl} style={imageStyle} />
+      <Card.Body style={cardBodyStyle}>
         <Card.Title>{project.name}</Card.Title>
         <Card.Text>
           {project.description || 'No description provided.'}
         </Card.Text>
-        <Button variant="secondary" className="mr-2">
-          <BsThreeDots />
+        <Button variant="primary" size="sm">
+          <BsEye />
         </Button>
-        <Button variant="outline-primary" className="mr-2">
+        {' '}
+        <Button variant="success" size="sm">
           <BsPencil />
         </Button>
-        <Button variant="outline-danger">
+        {' '}
+        <Button variant="danger" size="sm">
           <BsTrash />
         </Button>
+        {' '}
+        <Button variant="info" size="sm">
+          <FiFolder />
+        </Button>
       </Card.Body>
-      <Card.Footer>
+      <Card.Footer style={cardFooterStyle}>
         <small className="text-muted">Last updated {formatDate(project.date_updated)}</small>
       </Card.Footer>
     </Card>
   );
 };
 
-
 export default ProjectCardView;
-

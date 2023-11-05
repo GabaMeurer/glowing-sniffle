@@ -19,7 +19,7 @@ const Home: React.FC = () => {
       .then((response) => response.json())
       .then((data) => setProjects(data.data));
   
-    fetch('http://0.0.0.0:8055/items/homepage_background/1?fields=*,*.*')
+    fetch('http://0.0.0.0:8055/items/homepage_background/2?fields=*,*.*')
       .then((response) => response.json())
       .then((data) => {
         // Construct the background image URL from the Directus response

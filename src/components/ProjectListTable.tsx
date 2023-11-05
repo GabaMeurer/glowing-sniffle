@@ -69,7 +69,7 @@ const ProjectListTable: React.FC<{ isActionHidden?: boolean }> = ({ isActionHidd
                 <Button variant="danger" size="sm" className="button-space">
                   <BsTrash />
                 </Button>
-                <Button variant="primary" size="sm" className="mr-2">
+                <Button variant="info" size="sm" className="mr-2">
                   <FiFolder />
                 </Button>
               </td>

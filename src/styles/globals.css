@@ -157,3 +157,26 @@ a {
   gap: 1rem;
   margin-bottom: 1rem;
 }
+
+/* ProjectCardView.module.css or ProjectCardView.css */
+.projectCard {
+  width: 364px;
+  height: 413px;
+  margin-bottom: 1rem;
+}
+
+.projectCardImage {
+  height: 122px;
+  object-fit: cover;
+}
+
+.projectCardBody {
+  overflow-y: auto;
+}
+
+/* Additional styling for the footer can also be included if needed */
+.projectCardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
