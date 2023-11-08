@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import { Process } from '@component/pages/api/pmbok_process';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 interface CustomCardProps {
   process: Process;
@@ -8,21 +9,29 @@ interface CustomCardProps {
 
 const CustomCard: React.FC<CustomCardProps> = ({ process }) => {
   return (
-    <Card>
+    <Card style={{ width: '18rem', marginBottom: '1rem' }}>
       <Card.Header>{process.process_name}</Card.Header>
-      <Card.Body>
-        <Card.Title>Inputs</Card.Title>
-        {process.inputs?.map((input, index) => (
-          <Card.Text key={index}>{input.input_name}</Card.Text>
-        ))}
-        <Card.Title>Tools & Techniques</Card.Title>
-        {process.tools_techniques?.map((tool, index) => (
-          <Card.Text key={index}>{tool.tt_name}</Card.Text>
-        ))}
-        <Card.Title>Outputs</Card.Title>
-        {process.outputs?.map((output, index) => (
-          <Card.Text key={index}>{output.output_name}</Card.Text>
-        ))}
+      <Card.Body style={{ overflowY: 'auto' }}>
+        <Card.Title>Entradas</Card.Title>
+        <ListGroup variant="flush">
+          {process.inputs?.map((input, index) => (
+            <ListGroup.Item key={index}>{input.input_name}</ListGroup.Item>
+          ))}
+        </ListGroup>
+        
+        <Card.Title>Ferramentas e Técnicas</Card.Title>
+        <ListGroup variant="flush">
+          {process.tools_techniques?.map((tool, index) => (
+            <ListGroup.Item key={index}>{tool.tt_name}</ListGroup.Item>
+          ))}
+        </ListGroup>
+        
+        <Card.Title>Saídas</Card.Title>
+        <ListGroup variant="flush">
+          {process.outputs?.map((output, index) => (
+            <ListGroup.Item key={index}>{output.output_name}</ListGroup.Item>
+          ))}
+        </ListGroup>
       </Card.Body>
     </Card>
   );
@@ -57,7 +66,8 @@ const ProcessPage = () => {
   );
 };
 
-export default CustomCard;
+export default ProcessPage;
+
 
 
 

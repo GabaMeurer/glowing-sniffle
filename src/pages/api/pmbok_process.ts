@@ -1,4 +1,4 @@
-// pmob_process.ts
+// pmbok_process.ts
 export interface Process {
   id: number;
   sort: number;
